@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "Eduapoyos.Frontend", "Eduapoyos.Frontend\Eduapoyos.Frontend.esproj", "{19BB7898-64DA-CB69-8708-CC7A0EED8552}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "EduApoyos.Frontend", "Eduapoyos.Frontend\EduApoyos.Frontend.esproj", "{19BB7898-64DA-CB69-8708-CC7A0EED8552}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduApoyos.API", "EduApoyos.API\EduApoyos.API.csproj", "{4EB3CC72-B458-4E4D-97A3-E0E5C04A9314}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduApoyos.Domain", "EduApoyos.Domain\EduApoyos.Domain.csproj", "{E89F7E12-8665-4461-80B2-C1B29419FFBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduApoyos.Infraestructure", "EduApoyos.Infraestructure\EduApoyos.Infraestructure.csproj", "{22CBBEB5-A36F-4392-821F-389A73E9AB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduApoyos.Application", "EduApoyos.Application\EduApoyos.Application.csproj", "{1676A072-F0CF-4E5D-8A91-7E82527AEED5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +29,18 @@ Global
 		{4EB3CC72-B458-4E4D-97A3-E0E5C04A9314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EB3CC72-B458-4E4D-97A3-E0E5C04A9314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EB3CC72-B458-4E4D-97A3-E0E5C04A9314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E89F7E12-8665-4461-80B2-C1B29419FFBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E89F7E12-8665-4461-80B2-C1B29419FFBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E89F7E12-8665-4461-80B2-C1B29419FFBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E89F7E12-8665-4461-80B2-C1B29419FFBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22CBBEB5-A36F-4392-821F-389A73E9AB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CBBEB5-A36F-4392-821F-389A73E9AB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CBBEB5-A36F-4392-821F-389A73E9AB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CBBEB5-A36F-4392-821F-389A73E9AB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1676A072-F0CF-4E5D-8A91-7E82527AEED5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1676A072-F0CF-4E5D-8A91-7E82527AEED5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1676A072-F0CF-4E5D-8A91-7E82527AEED5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1676A072-F0CF-4E5D-8A91-7E82527AEED5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
