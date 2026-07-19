@@ -1,0 +1,11 @@
+# .NET
+.vs/
+EduApoyos.Server/bin/
+EduApoyos.Server/obj/
+
+# React / Node
+eduapoyos.client/node_modules/
+eduapoyos.client/build/
+eduapoyos.client/coverage/
+eduapoyos.client/.vscode/
+
