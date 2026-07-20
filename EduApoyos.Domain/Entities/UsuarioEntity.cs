@@ -12,14 +12,24 @@ namespace EduApoyos.Domain.Entities
     {
         public Guid Id { get; set; }
 
-        public string NombreCompleto { get; set; } = string.Empty;
+        public string NombreCompleto { get; set; }
 
-        public string Email { get; set; } = string.Empty;
+        public string Email { get; set; } 
 
-        public string PasswordHash { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } 
 
         public RolUsuario Rol { get; set; }
 
-        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
+        public DateTime FechaRegistro { get; set; } 
+
+        public UsuarioEntity(string nombreCompleto, string email, string passwordHash, RolUsuario rol)
+        {
+            Id = Guid.NewGuid();
+            NombreCompleto = nombreCompleto;
+            Email = email;
+            PasswordHash = passwordHash;
+            Rol = rol;
+            FechaRegistro = DateTime.UtcNow;
+        }
     }
 }
