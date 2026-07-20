@@ -11,9 +11,8 @@ namespace EduApoyos.Infraestructure.Models
 {
     public class SolicitudApoyo
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [Key]        
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required]
         public Guid EstudianteId { get; set; }

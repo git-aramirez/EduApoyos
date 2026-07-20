@@ -20,9 +20,9 @@ namespace EduApoyos.Infraestructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             modelBuilder.Entity<Estudiante>().ToTable("Estudiante");
             modelBuilder.Entity<HistorialEstado>().ToTable("HistorialEstado");
-            modelBuilder.Entity<SolicitudApoyo>().ToTable("SolicitudApoyo");
             modelBuilder.Entity<Usuario>().ToTable("Usuario");
         }
     }
