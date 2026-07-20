@@ -11,9 +11,8 @@ namespace EduApoyos.Infraestructure.Models
 {
     public class Usuario
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        [Key]        
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         [Required(ErrorMessage = "El nombre completo es obligatorio")]
         [StringLength(100, ErrorMessage = "El nombre no puede superar los 100 caracteres")]

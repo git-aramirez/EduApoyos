@@ -2,10 +2,19 @@
 .vs/
 EduApoyos.API/bin/
 EduApoyos.API/obj/
+EduApoyos.Domain/bin/
+EduApoyos.Domain/obj/
+EduApoyos.Infraestructure/bin/
+EduApoyos.Infraestructure/obj/
+EduApoyos.Application/bin/
+EduApoyos.Application/obj/
 
+git 
 # React / Node
 Eduapoyos.Frontend/node_modules/
-Eduapoyos.Frontendbuild/
+Eduapoyos.Frontend/build/
 Eduapoyos.Frontend/coverage/
 Eduapoyos.Frontend/.vscode/
+EduApoyos.Frontend/obj/
+EduApoyos.Frontend/bin/
 
