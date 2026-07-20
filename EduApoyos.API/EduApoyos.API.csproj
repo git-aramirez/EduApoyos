@@ -13,13 +13,20 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.29">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EduApoyos.Application\EduApoyos.Application.csproj" />
     <ProjectReference Include="..\eduapoyos.client\Eduapoyos.Frontend.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\EduApoyos.Domain\EduApoyos.Domain.csproj" />
+    <ProjectReference Include="..\EduApoyos.Infraestructure\EduApoyos.Infraestructure.csproj" />
   </ItemGroup>
 
 </Project>
