@@ -27,6 +27,7 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IHistorialEstadoRepository, HistorialEstadoRepository>();
 builder.Services.AddScoped<ISolicitudApoyoRepository, SolicitudApoyoRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IEstudianteService, EstudianteService>();
 
 
 // Registrar AutoMapper
