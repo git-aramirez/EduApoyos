@@ -11,22 +11,28 @@ namespace EduApoyos.Domain.Entities
 {
     public class HistorialEstadoEntity
     {
-        public Guid Id { get; set; }
-
+        public Guid Id { get; private set; }
         public Guid SolicitudId { get; set; }
-
         public SolicitudApoyoEntity Solicitud { get; set; }
-
         public Guid UsuarioId { get; set; }
-
         public UsuarioEntity Usuario { get; set; }
-
         public EstadoSolicitud EstadoAnterior { get; set; }
-
         public EstadoSolicitud EstadoNuevo { get; set; }
-
-        public DateTime FechaCambio { get; set; } = DateTime.UtcNow;
-
+        public DateTime FechaCambio { get; private set; }
         public string Observacion { get; set; } = string.Empty;
+
+        public HistorialEstadoEntity(Guid solicitudId, Guid usuarioId,
+                                     EstadoSolicitud estadoAnterior,
+                                     EstadoSolicitud estadoNuevo,
+                                     string observacion)
+        {
+            Id = Guid.NewGuid();
+            SolicitudId = solicitudId;
+            UsuarioId = usuarioId;
+            EstadoAnterior = estadoAnterior;
+            EstadoNuevo = estadoNuevo;
+            Observacion = observacion;
+            FechaCambio = DateTime.UtcNow;
+        }
     }
 }
