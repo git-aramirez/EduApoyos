@@ -1,6 +1,10 @@
-﻿using EduApoyos.Application.IRepositories;
+﻿using AutoMapper;
+using EduApoyos.Application.IRepositories;
 using EduApoyos.Domain.Entities;
 using EduApoyos.Domain.Enums;
+using EduApoyos.Infraestructure.Models;
+using EduApoyos.Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +15,50 @@ namespace EduApoyos.Infraestructure.Repositories
 {
     public class SolicitudApoyoRepository : ISolicitudApoyoRepository
     {
+        private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
 
-
-        public Task<SolicitudApoyoEntity> AddAsync(SolicitudApoyoEntity solicitudApoyoEntity)
+        public SolicitudApoyoRepository(AppDbContext context, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud estado, TipoApoyo tipoApoyo)
+        public async Task<SolicitudApoyoEntity> AddAsync(SolicitudApoyoEntity solicitudApoyoEntity)
         {
-            throw new NotImplementedException();
+            var model = _mapper.Map<SolicitudApoyo>(solicitudApoyoEntity);
+            await _context.SolicitudesApoyo.AddAsync(model);
+            await _context.SaveChangesAsync();
+            var entity = _mapper.Map<SolicitudApoyoEntity>(model);
+
+            return entity;
         }
 
-        public Task<SolicitudApoyoEntity> GetByIdAsync(Guid solicitudId)
+        public async Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo)
         {
-            throw new NotImplementedException();
+            IQueryable<SolicitudApoyo> query = _context.SolicitudesApoyo
+                                                       .Include(s => s.Estudiante)
+                                                       .Include(s => s.Asesor);
+
+            if (estado.HasValue)
+                query = query.Where(s => s.Estado == estado.Value);
+
+            if (tipoApoyo.HasValue)
+                query = query.Where(s => s.TipoApoyo == tipoApoyo.Value);
+
+            var solicitudes = await query.ToListAsync();
+
+            return _mapper.Map<IEnumerable<SolicitudApoyoEntity>>(solicitudes);
+        }
+
+        public async Task<SolicitudApoyoEntity> GetByIdAsync(Guid solicitudId)
+        {
+            var solicitud = await _context.SolicitudesApoyo
+                .Include(s => s.Estudiante)
+                .Include(s => s.Asesor)
+                .FirstOrDefaultAsync(s => s.Id == solicitudId);
+
+            return _mapper.Map<SolicitudApoyoEntity>(solicitud);
         }
     }
 }
