@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Infraestructure.Repositories
 {
-    public class UsuarioRepositorie : IUsuarioRepositorie
+    public class UsuarioRepository : IUsuarioRepository
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public UsuarioRepositorie(AppDbContext context, IMapper mapper)
+        public UsuarioRepository(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Application.IRepositories
 {
-    public interface IEstudienteRepositorie
+    public interface IEstudienteRepository
     {
         Task<IEnumerable<EstudianteEntity>> GetAllAsync();
         Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid estudianteId);

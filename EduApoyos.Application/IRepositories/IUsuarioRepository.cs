@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Application.IRepositories
 {
-    public interface IUsuarioRepositorie
+    public interface IUsuarioRepository
     {
         Task<UsuarioEntity> AddAsync(UsuarioEntity usuarioEntity);
     }
