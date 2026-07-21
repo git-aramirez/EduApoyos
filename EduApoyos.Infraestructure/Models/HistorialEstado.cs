@@ -12,7 +12,7 @@ namespace EduApoyos.Infraestructure.Models
     public class HistorialEstado
     {
         [Key]        
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
 
         [Required]
         public Guid SolicitudId { get; set; }
@@ -33,9 +33,9 @@ namespace EduApoyos.Infraestructure.Models
         public EstadoSolicitud EstadoNuevo { get; set; }
 
         [DataType(DataType.DateTime)]
-        public DateTime FechaCambio { get; set; } = DateTime.UtcNow;
+        public DateTime FechaCambio { get; set; }
 
         [StringLength(500)]
-        public string Observacion { get; set; } = string.Empty;
+        public string Observacion { get; set; }
     }
 }

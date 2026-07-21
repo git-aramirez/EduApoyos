@@ -22,6 +22,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IEstudienteRepository, EstudianteRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IHistorialEstadoRepository, HistorialEstadoRepository>();
+builder.Services.AddScoped<ISolicitudApoyoRepository, SolicitudApoyoRepository>();
 
 // Registrar AutoMapper
 
