@@ -39,7 +39,6 @@ namespace EduApoyos.Infraestructure.Repositories
             IQueryable<SolicitudApoyo> query = _context.SolicitudesApoyo
                                                        .Include(s => s.Estudiante)
                                                        .Include(s => s.Asesor);
-
             if (estado.HasValue)
                 query = query.Where(s => s.Estado == estado.Value);
 

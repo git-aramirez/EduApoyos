@@ -35,7 +35,7 @@ namespace EduApoyos.Infraestructure.Repositories
 
         public async Task<IEnumerable<EstudianteEntity>> GetAllAsync()
         {
-            IEnumerable<Estudiante> estudientes = await _context.Estudiantes.ToListAsync();
+            IEnumerable<Estudiante> estudientes = await _context.Estudiantes.Include(e => e.Usuario).ToListAsync();
 
             return _mapper.Map<IEnumerable<EstudianteEntity>>(estudientes);
         }
@@ -43,11 +43,12 @@ namespace EduApoyos.Infraestructure.Repositories
         public async Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid estudianteId)
         {
             IEnumerable<SolicitudApoyo> solicitudes = await _context.SolicitudesApoyo
-                                                        .Where(s => s.EstudianteId == estudianteId)
-                                                        .ToListAsync();
+                                                            .Include(s => s.Estudiante)
+                                                            .Include(s => s.Asesor)
+                                                            .Where(s => s.EstudianteId == estudianteId)
+                                                            .ToListAsync();
 
             return _mapper.Map<IEnumerable<SolicitudApoyoEntity>>(solicitudes);
-
         }
     }
 }
