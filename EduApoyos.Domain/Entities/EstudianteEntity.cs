@@ -17,12 +17,23 @@ namespace EduApoyos.Domain.Entities
 
         public UsuarioEntity Usuario { get; set; }
 
-        public string NumeroDocumento { get; set; } = string.Empty;
+        public string NumeroDocumento { get; set; }
 
         public TipoDocumento TipoDocumento { get; set; }
 
-        public string ProgramaAcademico { get; set; } = string.Empty;
+        public string ProgramaAcademico { get; set; }
 
         public int Semestre { get; set; }
+
+        public EstudianteEntity(Guid usuarioId, string numeroDocumento, TipoDocumento tipoDocumento,
+                            string programaAcademico, int semestre)
+        {
+            Id = Guid.NewGuid();
+            UsuarioId = usuarioId;
+            NumeroDocumento = numeroDocumento;
+            TipoDocumento = tipoDocumento;
+            ProgramaAcademico = programaAcademico;
+            Semestre = semestre;
+        }
     }
 }
