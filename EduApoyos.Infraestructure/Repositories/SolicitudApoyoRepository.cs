@@ -60,7 +60,7 @@ namespace EduApoyos.Infraestructure.Repositories
             return _mapper.Map<SolicitudApoyoEntity>(solicitud);
         }
 
-        public async Task<SolicitudApoyoEntity> PatchEstado(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud)
+        public async Task<SolicitudApoyoEntity> PatchEstadoAsync(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud)
         {
             var solicitud = _mapper.Map<SolicitudApoyo>(solicitudApoyoEntity);
             _context.SolicitudesApoyo.Attach(solicitud);

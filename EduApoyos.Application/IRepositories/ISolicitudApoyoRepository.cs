@@ -13,6 +13,6 @@ namespace EduApoyos.Application.IRepositories
         Task<SolicitudApoyoEntity> AddAsync(SolicitudApoyoEntity solicitudApoyoEntity);
         Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
         Task<SolicitudApoyoEntity> GetByIdAsync(Guid solicitudId);
-        Task<SolicitudApoyoEntity> PatchEstado(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud);
+        Task<SolicitudApoyoEntity> PatchEstadoAsync(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud);
     }
 }
