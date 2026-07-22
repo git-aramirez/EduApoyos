@@ -59,5 +59,18 @@ namespace EduApoyos.Infraestructure.Repositories
 
             return _mapper.Map<SolicitudApoyoEntity>(solicitud);
         }
+
+        public async Task<SolicitudApoyoEntity> PatchEstado(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud)
+        {
+            var solicitud = _mapper.Map<SolicitudApoyo>(solicitudApoyoEntity);
+            _context.SolicitudesApoyo.Attach(solicitud);
+            _context.Entry(solicitud).Property(s => s.Estado).CurrentValue = estadoSolicitud;
+            _context.Entry(solicitud).Property(s => s.FechaActualizacion).CurrentValue = DateTime.UtcNow;
+            await _context.SaveChangesAsync();
+            solicitudApoyoEntity.Estado = estadoSolicitud;
+            solicitudApoyoEntity.FechaActualizacion = solicitud.FechaActualizacion;
+
+            return solicitudApoyoEntity;
+        }
     }
 }

@@ -15,5 +15,6 @@ namespace EduApoyos.Application.IServices
         Task<IEnumerable<SolicitudApoyoResponseDto>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
         Task<SolicitudApoyoResponseDto> AddAsync(SolicitudApoyoRequestDto solicitudApoyoRequestDto);
         Task<SolicitudApoyoResponseDto> GetByIdAsync(Guid solicitudId);
+        Task<SolicitudApoyoResponseDto> PatchEstado(Guid solicitudId, EstadoSolicitud estadoSolicitud, string observacion);
     }
 }

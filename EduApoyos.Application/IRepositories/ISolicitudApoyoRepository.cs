@@ -10,8 +10,9 @@ namespace EduApoyos.Application.IRepositories
 {
     public interface ISolicitudApoyoRepository
     {
-        Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
         Task<SolicitudApoyoEntity> AddAsync(SolicitudApoyoEntity solicitudApoyoEntity);
+        Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
         Task<SolicitudApoyoEntity> GetByIdAsync(Guid solicitudId);
+        Task<SolicitudApoyoEntity> PatchEstado(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud);
     }
 }

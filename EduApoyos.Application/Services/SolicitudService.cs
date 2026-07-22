@@ -16,11 +16,13 @@ namespace EduApoyos.Application.Services
     public class SolicitudService : ISolicitudService
     {
         private readonly ISolicitudApoyoRepository _solicitudApoyoRepository;
+        private readonly IHistorialEstadoRepository _historialEstadoRepository;
         private readonly IMapper _mapper;
 
-        public SolicitudService(ISolicitudApoyoRepository solicitudApoyoRepository, IMapper mapper)
+        public SolicitudService(ISolicitudApoyoRepository solicitudApoyoRepository, IHistorialEstadoRepository historialEstadoRepository, IMapper mapper)
         {
             _solicitudApoyoRepository=solicitudApoyoRepository;
+            _historialEstadoRepository=historialEstadoRepository;
             _mapper=mapper;
         }
 
@@ -48,7 +50,29 @@ namespace EduApoyos.Application.Services
 
             if (solicitud!=null)
             {
+                 var response = await _historialEstadoRepository.GetBySolicitudIdAsync(solicitudId);
+                 var historialEstadosResponseDto = _mapper.Map<IEnumerable<HistorialEstadoResponseDto>>(response);
+
+                solicitudApoyoResponse.historialEstados = historialEstadosResponseDto;
             }
+
+            return solicitudApoyoResponse;
+        }
+
+        public async Task<SolicitudApoyoResponseDto> PatchEstado(Guid solicitudId, EstadoSolicitud estadoSolicitud, string observacion)
+        {
+            var solicitud = await _solicitudApoyoRepository.GetByIdAsync(solicitudId);
+            if (solicitud == null) throw new KeyNotFoundException();
+
+            var response = await _solicitudApoyoRepository.PatchEstado(solicitud, estadoSolicitud);
+
+            if (response!=null)
+            {
+                var historialEstado = new HistorialEstadoEntity(response.Id, response.AsesorId, solicitud.Estado, response.Estado, observacion);
+                await _historialEstadoRepository.AddAsync(historialEstado);
+            }
+
+            return _mapper.Map<SolicitudApoyoResponseDto>(response);
         }
     }
 }

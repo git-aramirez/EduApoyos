@@ -21,7 +21,7 @@ namespace EduApoyos.Domain.Entities
         public string Descripcion { get; set; }
         public EstadoSolicitud Estado { get; set; }
         public DateTime FechaSolicitud { get; private set; }
-        public DateTime FechaActualizacion { get; private set; }
+        public DateTime FechaActualizacion { get;  set; }
 
         // Constructor parametrizado
         public SolicitudApoyoEntity(Guid estudianteId, Guid asesorId, TipoApoyo tipoApoyo,
