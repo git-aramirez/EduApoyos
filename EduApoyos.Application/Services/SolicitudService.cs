@@ -42,33 +42,33 @@ namespace EduApoyos.Application.Services
             return _mapper.Map<IEnumerable<SolicitudApoyoResponseDto>>(solicitudes);
         }
 
-        public async Task<SolicitudApoyoResponseDto> GetByIdAsync(Guid solicitudId)
+        public async Task<SolicitudDetalleResponseDto> GetByIdAsync(Guid solicitudId)
         {
             var solicitud = await _solicitudApoyoRepository.GetByIdAsync(solicitudId);
 
-            var solicitudApoyoResponse = _mapper.Map<SolicitudApoyoResponseDto>(solicitud); 
+            var solicitudDetalleResponse = _mapper.Map<SolicitudDetalleResponseDto>(solicitud); 
 
             if (solicitud!=null)
             {
                  var response = await _historialEstadoRepository.GetBySolicitudIdAsync(solicitudId);
                  var historialEstadosResponseDto = _mapper.Map<IEnumerable<HistorialEstadoResponseDto>>(response);
 
-                solicitudApoyoResponse.historialEstados = historialEstadosResponseDto;
+                solicitudDetalleResponse.historialEstados = historialEstadosResponseDto;
             }
 
-            return solicitudApoyoResponse;
+            return solicitudDetalleResponse;
         }
 
-        public async Task<SolicitudApoyoResponseDto> PatchEstado(Guid solicitudId, EstadoSolicitud estadoSolicitud, string observacion)
+        public async Task<SolicitudApoyoResponseDto> PatchEstadoAsync(Guid solicitudId, SolicitudCambioEstadoRequestDto solicitudCambioEstadoRequestDto)
         {
             var solicitud = await _solicitudApoyoRepository.GetByIdAsync(solicitudId);
             if (solicitud == null) throw new KeyNotFoundException();
 
-            var response = await _solicitudApoyoRepository.PatchEstado(solicitud, estadoSolicitud);
+            var response = await _solicitudApoyoRepository.PatchEstadoAsync(solicitud, solicitudCambioEstadoRequestDto.Estado);
 
             if (response!=null)
             {
-                var historialEstado = new HistorialEstadoEntity(response.Id, response.AsesorId, solicitud.Estado, response.Estado, observacion);
+                var historialEstado = new HistorialEstadoEntity(response.Id, response.AsesorId, solicitud.Estado, response.Estado, solicitudCambioEstadoRequestDto.Observacion);
                 await _historialEstadoRepository.AddAsync(historialEstado);
             }
 
