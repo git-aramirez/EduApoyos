@@ -5,6 +5,8 @@ using EduApoyos.Application.Mappings;
 using EduApoyos.Infraestructure.Persistence;
 using EduApoyos.Application.IRepositories;
 using EduApoyos.Infraestructure.Repositories;
+using EduApoyos.Application.IServices;
+using EduApoyos.Application.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +26,9 @@ builder.Services.AddScoped<IEstudienteRepository, EstudianteRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IHistorialEstadoRepository, HistorialEstadoRepository>();
 builder.Services.AddScoped<ISolicitudApoyoRepository, SolicitudApoyoRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IEstudianteService, EstudianteService>();
+
 
 // Registrar AutoMapper
 
