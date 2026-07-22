@@ -40,12 +40,12 @@ namespace EduApoyos.Infraestructure.Repositories
             return _mapper.Map<IEnumerable<EstudianteEntity>>(estudientes);
         }
 
-        public async Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid estudianteId)
+        public async Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid id)
         {
             IEnumerable<SolicitudApoyo> solicitudes = await _context.SolicitudesApoyo
                                                             .Include(s => s.Estudiante)
                                                             .Include(s => s.Asesor)
-                                                            .Where(s => s.EstudianteId == estudianteId)
+                                                            .Where(s => s.EstudianteId == id)
                                                             .ToListAsync();
 
             return _mapper.Map<IEnumerable<SolicitudApoyoEntity>>(solicitudes);

@@ -62,13 +62,15 @@ namespace EduApoyos.Infraestructure.Repositories
 
         public async Task<SolicitudApoyoEntity> PatchEstadoAsync(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud)
         {
-            var solicitud = _mapper.Map<SolicitudApoyo>(solicitudApoyoEntity);
+            var solicitud = await _context.SolicitudesApoyo.FirstOrDefaultAsync(s => s.Id == solicitudApoyoEntity.Id);
             _context.SolicitudesApoyo.Attach(solicitud);
-            _context.Entry(solicitud).Property(s => s.Estado).CurrentValue = estadoSolicitud;
-            _context.Entry(solicitud).Property(s => s.FechaActualizacion).CurrentValue = DateTime.UtcNow;
+            solicitud.Estado = estadoSolicitud;
+            solicitud.FechaActualizacion = DateTime.UtcNow;
+            _context.Entry(solicitud).Property(s => s.Estado).IsModified = true;
+            _context.Entry(solicitud).Property(s => s.FechaActualizacion).IsModified = true;
             await _context.SaveChangesAsync();
-            solicitudApoyoEntity.Estado = estadoSolicitud;
-            solicitudApoyoEntity.FechaActualizacion = solicitud.FechaActualizacion;
+            solicitudApoyoEntity.Estado = solicitud.Estado;
+            solicitudApoyoEntity.FechaActualizacion =solicitud.FechaActualizacion;
 
             return solicitudApoyoEntity;
         }

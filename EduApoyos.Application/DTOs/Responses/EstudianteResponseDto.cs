@@ -13,7 +13,6 @@ namespace EduApoyos.Application.DTOs.Responses
     {
         public Guid Id { get; set; }
         public Guid UsuarioId { get; set; }
-        public UsuarioResponseDto Usuario { get; set; }
         public string NumeroDocumento { get; set; }
         public TipoDocumento TipoDocumento { get; set; }
         public string ProgramaAcademico { get; set; }

@@ -13,7 +13,6 @@ namespace EduApoyos.Application.DTOs.Requests
         [Required]
         public EstadoSolicitud Estado { get; set; }
 
-        [Required]
-        public string Observacion { get; set; }
+        public string? Observacion { get; set; }
     }
 }

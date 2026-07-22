@@ -3,6 +3,7 @@ using EduApoyos.Application.IRepositories;
 using EduApoyos.Domain.Entities;
 using EduApoyos.Infraestructure.Models;
 using EduApoyos.Infraestructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,15 @@ namespace EduApoyos.Infraestructure.Repositories
             return entity;
         }
 
-        public Task<IEnumerable<HistorialEstadoEntity>> GetBySolicitudIdAsync(Guid solicitudId)
+        public async Task<IEnumerable<HistorialEstadoEntity>> GetBySolicitudIdAsync(Guid solicitudId)
         {
-            throw new NotImplementedException();
+            var historial = await _context.HistorialEstados
+                .Include(h => h.Usuario) 
+                .Where(h => h.SolicitudId == solicitudId)
+                .OrderByDescending(h => h.FechaCambio)
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<HistorialEstadoEntity>>(historial);
         }
     }
 }
