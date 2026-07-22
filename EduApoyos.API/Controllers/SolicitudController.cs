@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EduApoyos.API.Controllers
 {
-    public class SolicitudController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class SolicitudController : ControllerBase
     {
-        private readonly ISolicitudService _solicitudService;
+        private readonly ISolicitudApoyoService _solicitudService;
 
-        public SolicitudController(ISolicitudService solicitudService)
+        public SolicitudController(ISolicitudApoyoService solicitudService)
         {
             _solicitudService = solicitudService;
         }

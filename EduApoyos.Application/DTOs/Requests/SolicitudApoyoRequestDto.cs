@@ -11,9 +11,6 @@ namespace EduApoyos.Application.DTOs.Requests
 {
     public class SolicitudApoyoRequestDto
     {
-        [Key]
-        public Guid Id { get; set; }
-
         [Required]
         public Guid EstudianteId { get; set; }
 

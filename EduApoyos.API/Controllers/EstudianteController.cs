@@ -1,6 +1,7 @@
 ﻿using EduApoyos.Application.DTOs.Requests;
 using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Application.IServices;
+using EduApoyos.Domain.Entities;
 using EduApoyos.Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 

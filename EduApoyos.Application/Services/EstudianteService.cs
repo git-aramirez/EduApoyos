@@ -40,9 +40,9 @@ namespace EduApoyos.Application.Services
             return _mapper.Map<IEnumerable<EstudianteResponseDto>>(estudiantes);
         }
 
-        public async Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync(Guid estudianteId)
+        public async Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync(Guid id)
         {
-            var solicitudes = await _estudienteRepository.GetSolicitudesByEstudianteIdAsync(estudianteId);
+            var solicitudes = await _estudienteRepository.GetSolicitudesByEstudianteIdAsync(id);
 
             return _mapper.Map<IEnumerable<SolicitudApoyoResponseDto>>(solicitudes);
         }

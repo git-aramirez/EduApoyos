@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Application.IServices
 {
-    public interface ISolicitudService
+    public interface ISolicitudApoyoService
     {
         Task<IEnumerable<SolicitudApoyoResponseDto>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
         Task<SolicitudApoyoResponseDto> AddAsync(SolicitudApoyoRequestDto solicitudApoyoRequestDto);

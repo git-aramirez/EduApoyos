@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Application.Services
 {
-    public class SolicitudService : ISolicitudService
+    public class SolicitudApoyoService : ISolicitudApoyoService
     {
         private readonly ISolicitudApoyoRepository _solicitudApoyoRepository;
         private readonly IHistorialEstadoRepository _historialEstadoRepository;
         private readonly IMapper _mapper;
 
-        public SolicitudService(ISolicitudApoyoRepository solicitudApoyoRepository, IHistorialEstadoRepository historialEstadoRepository, IMapper mapper)
+        public SolicitudApoyoService(ISolicitudApoyoRepository solicitudApoyoRepository, IHistorialEstadoRepository historialEstadoRepository, IMapper mapper)
         {
             _solicitudApoyoRepository=solicitudApoyoRepository;
             _historialEstadoRepository=historialEstadoRepository;

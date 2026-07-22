@@ -14,7 +14,7 @@ namespace EduApoyos.Application.Mappings
     {
         public SolicitudDetalleAppProfile()
         {
-            CreateMap<SolicitudApoyoEntity, SolicitudApoyoResponseDto>();
+            CreateMap<SolicitudApoyoEntity, SolicitudDetalleResponseDto>();
         }
     }
 }
