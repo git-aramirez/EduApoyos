@@ -8,6 +8,8 @@ EduApoyos.Infraestructure/bin/
 EduApoyos.Infraestructure/obj/
 EduApoyos.Application/bin/
 EduApoyos.Application/obj/
+EduApoyos.Tests/obj/
+EduApoyos.Tests/bin/
 
 git 
 # React / Node
