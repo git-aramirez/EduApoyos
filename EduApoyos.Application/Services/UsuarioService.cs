@@ -50,6 +50,7 @@ namespace EduApoyos.Application.Services
             {
                 var claims = new[]
                 {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
                 new Claim("NombreCompleto", user.NombreCompleto),
                 new Claim(ClaimTypes.Role, user.Rol.ToString()),
