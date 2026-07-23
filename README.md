@@ -30,10 +30,14 @@ SqlServer
 ## Design patterns
 The following are the design patterns implemented in the app
 
-1) Repository: Repositories such as (EstudianteRepository, SolicitudApoyoRepository, UsuarioRepository) were created to encapsulate data access and separate persistence from business logic.
-2) ServiceLayer: Interfaces such as IEstudianteService, ISolicitudApoyoService, and their implementations.They centralize business rules and coordinate repositories
-3) DTO Data Transfer Object : Classes such as EstudianteRequestDto and EstudianteResponseDto. were created to reduce the coupling between domain entities and contracts exposed in the API
-4) Dependency Injection: ASP.NET Core injects services (IStudentService, IUserRepository) into controllers. This makes unit testing easier and reduces coupling.
+### 1) Repository:
+Repositories such as (EstudianteRepository, SolicitudApoyoRepository, UsuarioRepository) were created to encapsulate data access and separate persistence from business logic.
+
+### 2) ServiceLayer: Interfaces such as IEstudianteService, ISolicitudApoyoService, and their implementations.They centralize business rules and coordinate repositories
+
+### 3) DTO Data Transfer Object : Classes such as EstudianteRequestDto and EstudianteResponseDto. were created to reduce the coupling between domain entities and contracts exposed in the API
+
+### 4) Dependency Injection: ASP.NET Core injects services (IStudentService, IUserRepository) into controllers. This makes unit testing easier and reduces coupling.
 
 ### Migrations
 Migrations were created using Entity Framework (Code-First)
@@ -44,7 +48,7 @@ Custom exception handling was implemented to control responses to requests, and 
 ## Authentication and Authorization
 JWT Bearer Tokens (ASP.NET Core Identity) were used for user authentication and authorization, and two default roles were defined when the API was created: Asesor and Estudiante
 
-# How do I log in for the first time? :
+### How do I log in for the first time? :
 
 1) Once you open the app, click the “Register” button and enter your basic information, including your username and password. These are the two fields you'll need to remember for logging in.
 2) Click “Register.” 
@@ -106,15 +110,15 @@ You can use the endpoints to retrieve the request, and the Swagger configuration
 ## Azure Services
 I would use the following Azure services
 
-# Azure App Service
+### Azure App Service
 It is a platform-as-a-service (PaaS) solution that would allow us to host the app easily and securely. It features load balancing, and Azure handles its security updates. We could configure horizontal scaling to improve performance and optimize resources. It offers high availability and is compatible with .NET.
 
-# Azure SQL Database
+## Azure SQL Database
 It uses a database to store information about students, applications, and users; it offers high availability and features robust security integrated with Azure AD.
 
-# Azure Blob Storage 
+### Azure Blob Storage 
 It allows you to store documents containing student reports; it is a scalable service that enables easy integration with the API for uploading and downloading files.
 
-# Azure Key Vault
+### Azure Key Vault
 I would use this module because it would allow me to store database connection strings and JWT configuration keys; I could even consider an enhancement to store passHashes.
 
