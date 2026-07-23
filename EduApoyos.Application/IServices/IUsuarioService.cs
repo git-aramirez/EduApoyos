@@ -1,6 +1,7 @@
 ﻿using EduApoyos.Application.DTOs.Requests;
 using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Domain.Entities;
+using EduApoyos.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace EduApoyos.Application.IServices
     {
         Task<UsuarioResponseDto> AddAsync(UsuarioRequestDto usuarioRequestDto);
 
-        Task<string?> LoginAsync(LoginDto loginDto);
+        Task<(string?, string?)> LoginAsync(LoginDto loginDto);
     }
 }

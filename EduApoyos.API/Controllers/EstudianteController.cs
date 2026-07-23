@@ -28,11 +28,11 @@ namespace EduApoyos.API.Controllers
             return Ok(estudiantes);
         }
 
-        [HttpGet("{id}/solicitudes")]
+        [HttpGet("solicitudes")]
         [Authorize(Roles = "Estudiante")]
-        public async Task<ActionResult<IEnumerable<SolicitudApoyoResponseDto>>> GetSolicitudesDeEstudiante(Guid id)
+        public async Task<ActionResult<IEnumerable<SolicitudApoyoResponseDto>>> GetSolicitudesDeEstudiante()
         {
-            var solicitudes = await _estudianteService.GetSolicitudesByEstudianteIdAsync(id);
+            var solicitudes = await _estudianteService.GetSolicitudesByEstudianteIdAsync();
 
             return Ok(solicitudes);
         }

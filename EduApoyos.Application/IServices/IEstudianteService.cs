@@ -12,7 +12,7 @@ namespace EduApoyos.Application.IServices
     public interface IEstudianteService
     {
         Task<IEnumerable<EstudianteResponseDto>> GetAllAsync();
-        Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync(Guid estudianteId);
+        Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync();
         Task<EstudianteResponseDto> AddAsync(EstudianteRequestDto estudianteRequestDto);
     }
 }

@@ -46,12 +46,12 @@ namespace EduApoyos.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto model)
         {
-            var token = await _usuarioService.LoginAsync(model);
+            var (token, rol) = await _usuarioService.LoginAsync(model);
 
             if (string.IsNullOrEmpty(token))
                 return Unauthorized();
 
-            return Ok(new { token });
+            return Ok(new { token, rol });
         }
     }
 }

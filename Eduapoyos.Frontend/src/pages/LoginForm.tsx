@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom";
 const { TabPane } = Tabs;
 const { Title } = Typography;
 
+interface LoginResponse {
+  token: string;
+  rol: "Estudiante" | "Asesor"; // 👈 coincide con tu enum
+}
+
 const AuthPage = () => {
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -30,11 +35,27 @@ const AuthPage = () => {
 
   const onLoginFinish = async (values: any) => {
     try {
-      const result = await login(values);
+      const response = await fetch("https://localhost:7185/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+  
+      if (!response.ok) throw new Error("Login inválido");
+  
+      const result: LoginResponse = await response.json();
+  
       localStorage.setItem("token", result.token);
       message.success("Login exitoso");
       form.resetFields();
-      navigate("/dashboard");
+  
+      if (result.rol === "Estudiante") {
+        navigate("/estudiante/dashboard");
+      } else if (result.rol === "Asesor") {
+        navigate("/asesor/dashboard");
+      } else {
+        navigate("/"); // fallback
+      }
     } catch {
       message.error("Credenciales inválidas");
     }

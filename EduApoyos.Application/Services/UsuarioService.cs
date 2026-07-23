@@ -4,6 +4,7 @@ using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Application.IRepositories;
 using EduApoyos.Application.IServices;
 using EduApoyos.Domain.Entities;
+using EduApoyos.Domain.Enums;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
@@ -41,7 +42,7 @@ namespace EduApoyos.Application.Services
             return _mapper.Map<UsuarioResponseDto>(result);
         }
 
-        public async Task<string?> LoginAsync(LoginDto loginDto)
+        public async Task<(string?, string?)> LoginAsync(LoginDto loginDto)
         {
             var user = await _usuarioRepository.GetByUserNameAsync(loginDto.Username);
 
@@ -65,10 +66,10 @@ namespace EduApoyos.Application.Services
                     expires: DateTime.UtcNow.AddHours(1),
                     signingCredentials: creds);
 
-                return new JwtSecurityTokenHandler().WriteToken(token);
+                return (new JwtSecurityTokenHandler().WriteToken(token), user.Rol.ToString()) ;
             }
 
-            return null;
+            return (null, null);
         }
     }
 }
