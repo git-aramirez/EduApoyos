@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EduApoyos.Domain.Enums;
+using EduApoyos.Domain.Entities;
 
 namespace EduApoyos.Infraestructure.Models
 {
@@ -24,7 +25,7 @@ namespace EduApoyos.Infraestructure.Models
         public Guid AsesorId { get; set; }
 
         [ForeignKey(nameof(AsesorId))]
-        public Usuario Asesor { get; set; }
+        public UsuarioEntity Asesor { get; set; }
 
         [Required]
         public TipoApoyo TipoApoyo { get; set; }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EduApoyos.Domain.Enums;
+using EduApoyos.Domain.Entities;
 
 namespace EduApoyos.Infraestructure.Models
 {
@@ -18,7 +19,7 @@ namespace EduApoyos.Infraestructure.Models
         public Guid UsuarioId { get; set; }
 
         [ForeignKey(nameof(UsuarioId))]
-        public Usuario Usuario { get; set; }
+        public UsuarioEntity Usuario { get; set; }
 
         [Required]
         [StringLength(20)]

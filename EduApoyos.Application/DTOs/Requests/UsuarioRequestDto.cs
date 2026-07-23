@@ -20,9 +20,12 @@ namespace EduApoyos.Application.DTOs.Requests
         public string Email { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "La contraseña es obligatoria")]
-        public string PasswordHash { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El rol es obligatorio")]
         public RolUsuario Rol { get; set; }
+
+        [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
+        public string UserName { get; set; } = string.Empty;
     }
 }

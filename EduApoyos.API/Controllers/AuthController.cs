@@ -2,7 +2,12 @@
 using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Application.IServices;
 using EduApoyos.Application.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace EduApoyos.API.Controllers
 {
@@ -36,6 +41,17 @@ namespace EduApoyos.API.Controllers
             {
                 return StatusCode(500, $"Error interno del servidor: {ex.Message}");
             }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto model)
+        {
+            var token = await _usuarioService.LoginAsync(model);
+
+            if (string.IsNullOrEmpty(token))
+                return Unauthorized();
+
+            return Ok(new { token });
         }
     }
 }

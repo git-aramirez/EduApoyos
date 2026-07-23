@@ -10,6 +10,10 @@ namespace EduApoyos.Application.IRepositories
 {
     public interface IUsuarioRepository
     {
-        Task<UsuarioEntity> AddAsync(UsuarioEntity usuarioEntity);
+        Task<UsuarioEntity> AddAsync(UsuarioEntity usuarioEntity, string password);
+
+        Task<UsuarioEntity> GetByUserNameAsync(string userName);
+
+        Task<bool> CheckPasswordAsync(UsuarioEntity user, string password);
     }
 }

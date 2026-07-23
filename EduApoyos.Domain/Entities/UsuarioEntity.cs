@@ -1,4 +1,5 @@
 ﻿using EduApoyos.Domain.Enums;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,28 +9,20 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Domain.Entities
 {
-    public class UsuarioEntity
+    public class UsuarioEntity: IdentityUser<Guid>
     {
-        public Guid Id { get; set; }
-
-        public string NombreCompleto { get; set; }
-
-        public string Email { get; set; } 
-
-        public string PasswordHash { get; set; } 
-
+        public string NombreCompleto { get; set; } = string.Empty;
         public RolUsuario Rol { get; set; }
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
 
-        public DateTime FechaRegistro { get; set; } 
-
-        public UsuarioEntity(string nombreCompleto, string email, string passwordHash, RolUsuario rol)
+        public UsuarioEntity(string nombreCompleto, string email, string userName, RolUsuario rol)
         {
             Id = Guid.NewGuid();
             NombreCompleto = nombreCompleto;
             Email = email;
-            PasswordHash = passwordHash;
             Rol = rol;
             FechaRegistro = DateTime.UtcNow;
+            UserName = userName;
         }
     }
 }

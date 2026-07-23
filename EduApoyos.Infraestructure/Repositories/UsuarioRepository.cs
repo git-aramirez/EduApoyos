@@ -4,6 +4,8 @@ using EduApoyos.Application.IRepositories;
 using EduApoyos.Domain.Entities;
 using EduApoyos.Infraestructure.Models;
 using EduApoyos.Infraestructure.Persistence;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +16,34 @@ namespace EduApoyos.Infraestructure.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
+        private readonly UserManager<UsuarioEntity> _userManager;
 
-        public UsuarioRepository(AppDbContext context, IMapper mapper)
+        public UsuarioRepository(UserManager<UsuarioEntity> userManager)
         {
-            _context = context;
-            _mapper = mapper;
+            _userManager=userManager;
         }
 
-        public async Task<UsuarioEntity> AddAsync(UsuarioEntity usuarioEntity)
+        public async Task<UsuarioEntity> AddAsync(UsuarioEntity usuarioEntity, string password)
         {
-            var model = _mapper.Map<Usuario>(usuarioEntity);
-            await _context.Usuarios.AddAsync(model);
-            await _context.SaveChangesAsync();
-            var entity = _mapper.Map<UsuarioEntity>(model);
+            var result = await _userManager.CreateAsync(usuarioEntity, password);
 
-            return entity;
+            if (!result.Succeeded)
+            {
+                var errores = string.Join(", ", result.Errors.Select(e => e.Description));
+                throw new Exception($"No se pudo crear el usuario: {errores}");
+            }
+
+            return usuarioEntity;
+        }
+
+        public async Task<UsuarioEntity> GetByUserNameAsync(string userName)
+        {
+            return await _userManager.FindByNameAsync(userName);
+        }
+
+        public async Task<bool> CheckPasswordAsync(UsuarioEntity user, string password)
+        {
+            return await _userManager.CheckPasswordAsync(user, password);
         }
     }
 }
