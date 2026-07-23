@@ -22,7 +22,7 @@ namespace EduApoyos.Application.Services
         private readonly IEstudienteRepository _estudienteRepository;
         private readonly IMapper _mapper;
 
-        public EstudianteService(IEstudienteRepository estudienteRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor,)
+        public EstudianteService(IEstudienteRepository estudienteRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _estudienteRepository=estudienteRepository;
             _mapper=mapper;
