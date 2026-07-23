@@ -19,10 +19,10 @@ namespace EduApoyos.Application.Services
     public class EstudianteService : IEstudianteService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IEstudienteRepository _estudienteRepository;
+        private readonly IEstudianteRepository _estudienteRepository;
         private readonly IMapper _mapper;
 
-        public EstudianteService(IEstudienteRepository estudienteRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+        public EstudianteService(IEstudianteRepository estudienteRepository, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _estudienteRepository=estudienteRepository;
             _mapper=mapper;

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)xunit.core\2.5.3\build\xunit.core.targets" Condition="Exists('$(NuGetPackageRoot)xunit.core\2.5.3\build\xunit.core.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.identitymodel.abstractions\8.20.0\buildTransitive\Microsoft.IdentityModel.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.identitymodel.abstractions\8.20.0\buildTransitive\Microsoft.IdentityModel.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.identitymodel.logging\8.20.0\buildTransitive\Microsoft.IdentityModel.Logging.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.identitymodel.logging\8.20.0\buildTransitive\Microsoft.IdentityModel.Logging.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\10.0.0\buildTransitive\net8.0\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.logging.abstractions\10.0.0\buildTransitive\net8.0\Microsoft.Extensions.Logging.Abstractions.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.identitymodel.tokens\8.20.0\buildTransitive\Microsoft.IdentityModel.Tokens.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.identitymodel.tokens\8.20.0\buildTransitive\Microsoft.IdentityModel.Tokens.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.identitymodel.jsonwebtokens\8.20.0\buildTransitive\Microsoft.IdentityModel.JsonWebTokens.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.identitymodel.jsonwebtokens\8.20.0\buildTransitive\Microsoft.IdentityModel.JsonWebTokens.targets')" />
+    <Import Project="$(NuGetPackageRoot)system.identitymodel.tokens.jwt\8.20.0\buildTransitive\System.IdentityModel.Tokens.Jwt.targets" Condition="Exists('$(NuGetPackageRoot)system.identitymodel.tokens.jwt\8.20.0\buildTransitive\System.IdentityModel.Tokens.Jwt.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\17.8.0\build\netstandard2.0\Microsoft.CodeCoverage.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\17.8.0\build\netcoreapp3.1\Microsoft.NET.Test.Sdk.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.options\10.0.0\buildTransitive\net8.0\Microsoft.Extensions.Options.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.options\10.0.0\buildTransitive\net8.0\Microsoft.Extensions.Options.targets')" />
+    <Import Project="$(NuGetPackageRoot)coverlet.collector\6.0.0\build\netstandard1.0\coverlet.collector.targets" Condition="Exists('$(NuGetPackageRoot)coverlet.collector\6.0.0\build\netstandard1.0\coverlet.collector.targets')" />
+  </ImportGroup>
+</Project>

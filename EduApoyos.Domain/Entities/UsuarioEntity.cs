@@ -24,5 +24,9 @@ namespace EduApoyos.Domain.Entities
             FechaRegistro = DateTime.UtcNow;
             UserName = userName;
         }
+
+        public UsuarioEntity() : base()
+        {
+        }
     }
 }

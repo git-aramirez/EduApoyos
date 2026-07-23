@@ -11,7 +11,7 @@ namespace EduApoyos.Application.IRepositories
     public interface ISolicitudApoyoRepository
     {
         Task<SolicitudApoyoEntity> AddAsync(SolicitudApoyoEntity solicitudApoyoEntity);
-        Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado, TipoApoyo? tipoApoyo);
+        Task<IEnumerable<SolicitudApoyoEntity>> GetByEstadoAndTipoAsync(EstadoSolicitud? estado = null, TipoApoyo? tipoApoyo = null);
         Task<SolicitudApoyoEntity> GetByIdAsync(Guid solicitudId);
         Task<SolicitudApoyoEntity> PatchEstadoAsync(SolicitudApoyoEntity solicitudApoyoEntity, EstadoSolicitud estadoSolicitud);
     }
