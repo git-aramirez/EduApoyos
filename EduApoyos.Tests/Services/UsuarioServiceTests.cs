@@ -66,7 +66,8 @@ namespace EduApoyos.Tests.Services
 
             var result = await _service.LoginAsync(loginDto);
 
-            Assert.Null(result);
+            Assert.Null(result.Item1);
+            Assert.Null(result.Item2);
         }
 
         [Fact]
@@ -80,7 +81,8 @@ namespace EduApoyos.Tests.Services
 
             var result = await _service.LoginAsync(loginDto);
 
-            Assert.Null(result);
+            Assert.Null(result.Item1);
+            Assert.Null(result.Item2);
         }
 
         [Fact]
@@ -95,7 +97,7 @@ namespace EduApoyos.Tests.Services
             var result = await _service.LoginAsync(loginDto);
 
             Assert.NotNull(result);
-            Assert.Contains("ey", result); // JWT tokens empiezan con "eyJ..."
+            Assert.Contains("ey", result.Item1); // JWT tokens empiezan con "eyJ..."
         }
     }
 }
