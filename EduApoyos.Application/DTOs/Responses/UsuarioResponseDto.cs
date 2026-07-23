@@ -17,5 +17,7 @@ namespace EduApoyos.Application.DTOs.Responses
         public RolUsuario Rol { get; set; }
 
         public DateTime FechaRegistro { get; set; }
+
+        public string UserName { get; set; }
     }
 }

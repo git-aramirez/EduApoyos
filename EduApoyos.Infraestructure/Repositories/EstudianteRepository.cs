@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Infraestructure.Repositories
 {
-    public class EstudianteRepository : IEstudienteRepository
+    public class EstudianteRepository : IEstudianteRepository
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;

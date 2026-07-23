@@ -20,7 +20,7 @@ namespace EduApoyos.Domain.Entities
         public decimal MontoSolicitado { get; set; }
         public string Descripcion { get; set; }
         public EstadoSolicitud Estado { get; set; }
-        public DateTime FechaSolicitud { get; private set; }
+        public DateTime FechaSolicitud { get; set; }
         public DateTime FechaActualizacion { get;  set; }
 
         // Constructor parametrizado
@@ -36,6 +36,10 @@ namespace EduApoyos.Domain.Entities
             Estado = EstadoSolicitud.Pendiente;
             FechaSolicitud = DateTime.UtcNow;
             FechaActualizacion = DateTime.UtcNow;
+        }
+
+        public SolicitudApoyoEntity()
+        {
         }
     }
 }

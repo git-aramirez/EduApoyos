@@ -35,5 +35,10 @@ namespace EduApoyos.Domain.Entities
             ProgramaAcademico = programaAcademico;
             Semestre = semestre;
         }
+
+        public EstudianteEntity()
+        {
+            
+        }
     }
 }

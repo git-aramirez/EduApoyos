@@ -58,7 +58,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddScoped<IEstudienteRepository, EstudianteRepository>();
+builder.Services.AddScoped<IEstudianteRepository, EstudianteRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IHistorialEstadoRepository, HistorialEstadoRepository>();
 builder.Services.AddScoped<ISolicitudApoyoRepository, SolicitudApoyoRepository>();
