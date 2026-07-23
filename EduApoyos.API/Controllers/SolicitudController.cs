@@ -2,6 +2,7 @@
 using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Application.IServices;
 using EduApoyos.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduApoyos.API.Controllers
@@ -18,6 +19,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Asesor")]
         public async Task<ActionResult<IEnumerable<SolicitudApoyoResponseDto>>> GetSolicitudes(
             [FromQuery] EstadoSolicitud? estado,
             [FromQuery] TipoApoyo? tipo)
@@ -28,6 +30,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Asesor")]
         public async Task<ActionResult<SolicitudDetalleResponseDto>> GetDetalle(Guid id)
         {
             var solicitud = await _solicitudService.GetByIdAsync(id);
@@ -39,6 +42,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Asesor,Estudiante")]
         public async Task<ActionResult<SolicitudApoyoResponseDto>> Crear([FromBody] SolicitudApoyoRequestDto solicitudApoyoRequestDto)
         {
             if (solicitudApoyoRequestDto == null || !ModelState.IsValid)
@@ -60,6 +64,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpPatch("{id}/estado")]
+        [Authorize(Roles = "Asesor")]
         public async Task<ActionResult<SolicitudApoyoResponseDto>> CambiarEstado(Guid id, [FromBody] SolicitudCambioEstadoRequestDto solicitudCambioEstadoRequestDto)
         {
             if (solicitudCambioEstadoRequestDto == null || !ModelState.IsValid)

@@ -3,6 +3,7 @@ using EduApoyos.Application.DTOs.Responses;
 using EduApoyos.Application.IServices;
 using EduApoyos.Domain.Entities;
 using EduApoyos.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduApoyos.API.Controllers
@@ -19,6 +20,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Asesor")]
         public async Task<ActionResult<IEnumerable<EstudianteResponseDto>>> GetEstudiantes()
         {
             var estudiantes = await _estudianteService.GetAllAsync();
@@ -27,6 +29,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpGet("{id}/solicitudes")]
+        [Authorize(Roles = "Estudiante")]
         public async Task<ActionResult<IEnumerable<SolicitudApoyoResponseDto>>> GetSolicitudesDeEstudiante(Guid id)
         {
             var solicitudes = await _estudianteService.GetSolicitudesByEstudianteIdAsync(id);
@@ -35,6 +38,7 @@ namespace EduApoyos.API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Asesor")]
         public async Task<ActionResult<EstudianteResponseDto>> Register([FromBody] EstudianteRequestDto estudianteRequestDto)
         {
             if (estudianteRequestDto == null || !ModelState.IsValid)
