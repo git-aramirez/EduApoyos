@@ -16,7 +16,7 @@ namespace EduApoyos.Application.Mappings
         public UsuarioAppProfile()
         {
             CreateMap<UsuarioRequestDto, UsuarioEntity>()
-            .ConstructUsing(src => new UsuarioEntity(src.NombreCompleto, src.Email, src.PasswordHash, src.Rol));
+            .ConstructUsing(src => new UsuarioEntity(src.NombreCompleto, src.Email, src.UserName, src.Rol));
 
             CreateMap<UsuarioEntity, UsuarioResponseDto>();
         }

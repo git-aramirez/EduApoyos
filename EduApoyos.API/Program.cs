@@ -7,6 +7,12 @@ using EduApoyos.Application.IRepositories;
 using EduApoyos.Infraestructure.Repositories;
 using EduApoyos.Application.IServices;
 using EduApoyos.Application.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using EduApoyos.Domain.Entities;
+using EduApoyos.API.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +44,34 @@ builder.Services.AddAutoMapper(cfg =>
     cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies());
 });
 
+// Identity
+builder.Services.AddIdentity<UsuarioEntity, IdentityRole<Guid>>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+
+// JWT
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    };
+});
+
+builder.Services.AddAuthorization();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -63,5 +97,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
+
+// Seed de roles al iniciar la aplicación
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<Guid>>>();
+    await RoleSeeder.SeedRolesAsync(roleManager);
+}
 
 app.Run();

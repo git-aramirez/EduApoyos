@@ -1,4 +1,7 @@
-﻿using EduApoyos.Infraestructure.Models;
+﻿using EduApoyos.Domain.Entities;
+using EduApoyos.Infraestructure.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EduApoyos.Infraestructure.Persistence
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext: IdentityDbContext<UsuarioEntity, IdentityRole<Guid>, Guid>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options): base(options)
         { }
@@ -16,14 +19,13 @@ namespace EduApoyos.Infraestructure.Persistence
         public DbSet<Estudiante> Estudiantes { get; set; }
         public DbSet<HistorialEstado> HistorialEstados { get; set; }
         public DbSet<SolicitudApoyo> SolicitudesApoyo { get; set; }
-        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             modelBuilder.Entity<Estudiante>().ToTable("Estudiante");
             modelBuilder.Entity<HistorialEstado>().ToTable("HistorialEstado");
-            modelBuilder.Entity<Usuario>().ToTable("Usuario");
         }
     }
 }

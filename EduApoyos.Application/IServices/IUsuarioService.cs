@@ -12,5 +12,7 @@ namespace EduApoyos.Application.IServices
     public interface IUsuarioService
     {
         Task<UsuarioResponseDto> AddAsync(UsuarioRequestDto usuarioRequestDto);
+
+        Task<string?> LoginAsync(LoginDto loginDto);
     }
 }
