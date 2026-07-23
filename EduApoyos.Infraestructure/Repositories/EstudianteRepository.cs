@@ -58,5 +58,12 @@ namespace EduApoyos.Infraestructure.Repositories
 
             return _mapper.Map<IEnumerable<SolicitudApoyoEntity>>(solicitudes);
         }
+
+        public async Task<EstudianteEntity?> GetByUsuarioIdAsync(Guid usuarioId)
+        {
+            var estudiante = await _context.Estudiantes.FirstOrDefaultAsync(e => e.UsuarioId == usuarioId);
+
+            return _mapper.Map<EstudianteEntity>(estudiante);
+        }
     }
 }

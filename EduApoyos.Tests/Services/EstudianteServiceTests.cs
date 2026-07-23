@@ -82,7 +82,7 @@ namespace EduApoyos.Tests.Services
         {
             _httpContextMock.Setup(h => h.HttpContext).Returns(new DefaultHttpContext());
 
-            var result = await _service.GetSolicitudesByEstudianteIdAsync(Guid.NewGuid());
+            var result = await _service.GetSolicitudesByEstudianteIdAsync();
 
             Assert.Empty(result);
         }
@@ -93,11 +93,12 @@ namespace EduApoyos.Tests.Services
             var userId = Guid.NewGuid();
             SetHttpContextWithUser(userId);
 
-            var estudiante = new EstudianteEntity { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() }; // distinto
-            _repoMock.Setup(r => r.GetByIdAsync(estudiante.Id)).ReturnsAsync(estudiante);
+            var estudiante = new EstudianteEntity { Id = Guid.NewGuid(), UsuarioId = Guid.NewGuid() };
+
+            _repoMock.Setup(r => r.GetByUsuarioIdAsync(userId)).ReturnsAsync(estudiante);
 
             await Assert.ThrowsAsync<UnauthorizedAccessException>(() =>
-                _service.GetSolicitudesByEstudianteIdAsync(estudiante.Id));
+                _service.GetSolicitudesByEstudianteIdAsync());
         }
 
         [Fact]
@@ -107,14 +108,17 @@ namespace EduApoyos.Tests.Services
             SetHttpContextWithUser(userId);
 
             var estudiante = new EstudianteEntity { Id = Guid.NewGuid(), UsuarioId = userId };
-            var solicitudes = new List<SolicitudApoyoEntity> { new SolicitudApoyoEntity(estudiante.Id, Guid.NewGuid(), Domain.Enums.TipoApoyo.Beca, 500, "Test") };
+            var solicitudes = new List<SolicitudApoyoEntity>
+    {
+        new SolicitudApoyoEntity(estudiante.Id, Guid.NewGuid(), Domain.Enums.TipoApoyo.Beca, 500, "Test")
+    };
 
-            _repoMock.Setup(r => r.GetByIdAsync(estudiante.Id)).ReturnsAsync(estudiante);
+            _repoMock.Setup(r => r.GetByUsuarioIdAsync(userId)).ReturnsAsync(estudiante);
             _repoMock.Setup(r => r.GetSolicitudesByEstudianteIdAsync(estudiante.Id)).ReturnsAsync(solicitudes);
             _mapperMock.Setup(m => m.Map<IEnumerable<SolicitudApoyoResponseDto>>(solicitudes))
                 .Returns(new List<SolicitudApoyoResponseDto> { new SolicitudApoyoResponseDto { Id = solicitudes[0].Id } });
 
-            var result = await _service.GetSolicitudesByEstudianteIdAsync(estudiante.Id);
+            var result = await _service.GetSolicitudesByEstudianteIdAsync();
 
             Assert.Single(result);
         }

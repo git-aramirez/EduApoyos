@@ -47,19 +47,23 @@ namespace EduApoyos.Application.Services
             return _mapper.Map<IEnumerable<EstudianteResponseDto>>(estudiantes);
         }
 
-        public async Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync(Guid id)
+        public async Task<IEnumerable<SolicitudApoyoResponseDto>> GetSolicitudesByEstudianteIdAsync()
         {
-            var estudiante = await _estudienteRepository.GetByIdAsync(id);
             var userId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (userId == null) 
+            if (userId == null)
                 return new List<SolicitudApoyoResponseDto>();
 
-            if (estudiante == null || estudiante.UsuarioId != Guid.Parse(userId))
-            {
+            var estudiante = await _estudienteRepository.GetByUsuarioIdAsync(Guid.Parse(userId));
+
+            if (estudiante == null)
+                throw new UnauthorizedAccessException("No existe estudiante asociado a este usuario");
+
+            if (estudiante.UsuarioId != Guid.Parse(userId))
                 throw new UnauthorizedAccessException("No puedes acceder a estas solicitudes");
-            }
-            var solicitudes = await _estudienteRepository.GetSolicitudesByEstudianteIdAsync(id);
+
+            var solicitudes = await _estudienteRepository
+                .GetSolicitudesByEstudianteIdAsync(estudiante.Id);
 
             return _mapper.Map<IEnumerable<SolicitudApoyoResponseDto>>(solicitudes);
         }
