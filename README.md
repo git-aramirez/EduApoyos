@@ -35,7 +35,7 @@ The following are the design patterns implemented in the app
 3) DTO Data Transfer Object : Classes such as EstudianteRequestDto and EstudianteResponseDto. were created to reduce the coupling between domain entities and contracts exposed in the API
 4) Dependency Injection: ASP.NET Core injects services (IStudentService, IUserRepository) into controllers. This makes unit testing easier and reduces coupling.
 
-# Migrations
+### Migrations
 Migrations were created using Entity Framework (Code-First)
 
 ## Exceptions
