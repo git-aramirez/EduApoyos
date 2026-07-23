@@ -12,5 +12,6 @@ namespace EduApoyos.Application.IRepositories
         Task<IEnumerable<EstudianteEntity>> GetAllAsync();
         Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid id);
         Task<EstudianteEntity> AddAsync(EstudianteEntity estudianteEntity);
+        Task<EstudianteEntity> GetByIdAsync(Guid id);
     }
 }

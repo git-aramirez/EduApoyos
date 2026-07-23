@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,13 @@ namespace EduApoyos.Infraestructure.Repositories
             IEnumerable<Estudiante> estudientes = await _context.Estudiantes.Include(e => e.Usuario).ToListAsync();
 
             return _mapper.Map<IEnumerable<EstudianteEntity>>(estudientes);
+        }
+
+        public async Task<EstudianteEntity> GetByIdAsync(Guid id)
+        {
+            var estudiante = await _context.Estudiantes.FirstOrDefaultAsync(e => e.Id == id);
+
+            return _mapper.Map<EstudianteEntity>(estudiante);
         }
 
         public async Task<IEnumerable<SolicitudApoyoEntity>> GetSolicitudesByEstudianteIdAsync(Guid id)
