@@ -102,10 +102,12 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
+var frontendUrl = builder.Configuration["FrontendUrl"];
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:5173") // puerto de Vite
+        policy => policy.WithOrigins(frontendUrl) // puerto de Vite
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
